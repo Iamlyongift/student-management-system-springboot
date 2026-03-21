@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Student Management System - Spring Boot
 
 A RESTful API for managing students built with Spring Boot.
@@ -31,3 +32,7 @@ A RESTful API for managing students built with Spring Boot.
 2. Open in IntelliJ
 3. Run ManagementApplication.java
 4. API runs on http://localhost:8080
+=======
+# student-management-system-springboot
+A RESTful Student Management API built with Spring Boot,  featuring full CRUD operations, SQLite database,  input validation and clean layered architecture  (Controller → Service → Repository → Model)
+
