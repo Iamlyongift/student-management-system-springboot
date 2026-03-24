@@ -62,4 +62,13 @@ public class StudentController {
         String message = studentService.enrollStudentInCourse(studentId, courseId);
         return ResponseEntity.ok(message);
     }
+
+    //DELETE /api/v1/students/{studentId}/unenroll/{courseId}
+    @DeleteMapping("/{studentId}/unenroll/{courseId}")
+    public ResponseEntity<String> unenrollStudentInCourse(
+            @PathVariable Long studentId,
+            @PathVariable Long courseId) {
+        String message = studentService.unenrollStudentFromCourse(studentId, courseId);
+        return ResponseEntity.ok(message);
+    }
 }

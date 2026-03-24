@@ -4,10 +4,11 @@
 A RESTful API for managing students built with Spring Boot.
 
 ## Tech Stack
+- ## Tech Stack
 - Java 17
 - Spring Boot 3.5.11
 - Spring Data JPA
-- SQLite Database
+- MySQL Database   ← updated!
 - Lombok
 - Maven
 

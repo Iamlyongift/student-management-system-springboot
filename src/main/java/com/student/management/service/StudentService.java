@@ -11,6 +11,8 @@ public interface StudentService {
     CreateStudentResponse updateStudent(Long id, CreateStudentRequest request);
     String deleteStudent(Long id);
     String enrollStudentInCourse(Long studentId, Long courseId);
+    String unenrollStudentFromCourse(Long studentId, Long courseId);
+
 }
 
 //return type    method name    parameters

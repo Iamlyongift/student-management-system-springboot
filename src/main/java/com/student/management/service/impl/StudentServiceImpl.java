@@ -131,11 +131,35 @@ public class StudentServiceImpl implements StudentService {
         if (student.getCourses().contains(course)) {
             throw new IllegalArgumentException("Course already enrolled!");
         }
-        //Add cousre to student list(owner side)
+        //Add course to student list(owner side)
         student.getCourses().add(course);
         //save
         courseRepository.save(course);
         // return message
         return "Student enrolled successfully!";
     }
+
+    @Override
+    public String unenrollStudentFromCourse(Long studentId, Long courseId) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new IllegalArgumentException("Student not found!"));
+
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new IllegalArgumentException("Course not found!"));
+
+        // throw if NOT enrolled ✅
+        if (!student.getCourses().contains(course)) {
+            throw new IllegalArgumentException("Student is not enrolled in this course!");
+        }
+
+        // remove from student's list
+        student.getCourses().remove(course);
+
+        // save student (owner side!) ✅
+        studentRepository.save(student);
+
+        return "Student unenrolled successfully!";
+    }
+
+
 }
