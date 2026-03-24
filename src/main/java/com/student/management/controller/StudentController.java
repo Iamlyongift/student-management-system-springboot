@@ -54,4 +54,12 @@ public class StudentController {
         String message = studentService.deleteStudent(id);
         return ResponseEntity.ok(message);
     }
+
+    @PostMapping("/{studentId}/enroll/{courseId}")
+    public ResponseEntity<String> enrollStudentInCourse(
+            @PathVariable Long studentId,
+            @PathVariable Long courseId) {
+        String message = studentService.enrollStudentInCourse(studentId, courseId);
+        return ResponseEntity.ok(message);
+    }
 }

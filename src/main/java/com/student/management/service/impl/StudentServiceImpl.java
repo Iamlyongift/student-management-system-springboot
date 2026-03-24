@@ -2,12 +2,12 @@ package com.student.management.service.impl;
 
 import com.student.management.dtos.CreateStudentRequest;
 import com.student.management.dtos.CreateStudentResponse;
+import com.student.management.model.Course;
 import com.student.management.model.Student;
+import com.student.management.repository.CourseRepository;
 import com.student.management.repository.StudentRepository;
 import com.student.management.service.StudentService;
-import jakarta.persistence.Id;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Request;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,6 +18,7 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
+    private final CourseRepository courseRepository;
 
     @Override
     public CreateStudentResponse createStudent(CreateStudentRequest request) {
@@ -115,5 +116,26 @@ public class StudentServiceImpl implements StudentService {
                 .orElseThrow(() -> new IllegalArgumentException("Student not found!"));
         studentRepository.delete(student);
         return "Student deleted successfully!";
+    }
+
+    @Override
+    public String enrollStudentInCourse(Long studentId, Long courseId) {
+        //find student by Id
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new IllegalArgumentException("Student not found!"));
+        //find course by Id
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new IllegalArgumentException("Course not found!"));
+
+        // Step 3: check if already enrolled
+        if (student.getCourses().contains(course)) {
+            throw new IllegalArgumentException("Course already enrolled!");
+        }
+        //Add cousre to student list(owner side)
+        student.getCourses().add(course);
+        //save
+        courseRepository.save(course);
+        // return message
+        return "Student enrolled successfully!";
     }
 }
