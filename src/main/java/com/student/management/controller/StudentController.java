@@ -1,5 +1,6 @@
 package com.student.management.controller;
 
+import com.student.management.dtos.CreateCourseResponse;
 import com.student.management.dtos.CreateStudentRequest;
 import com.student.management.dtos.CreateStudentResponse;
 import com.student.management.service.StudentService;
@@ -70,5 +71,12 @@ public class StudentController {
             @PathVariable Long courseId) {
         String message = studentService.unenrollStudentFromCourse(studentId, courseId);
         return ResponseEntity.ok(message);
+    }
+
+    @GetMapping("/{id}/courses")
+    public ResponseEntity<List<CreateCourseResponse>> getStudentCourses(
+            @PathVariable Long id) {
+        List<CreateCourseResponse> responses = studentService.getStudentCourses(id);
+        return ResponseEntity.ok(responses);
     }
 }

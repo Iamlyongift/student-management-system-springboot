@@ -1,5 +1,6 @@
 package com.student.management.service;
 
+import com.student.management.dtos.CreateCourseResponse;
 import com.student.management.dtos.CreateStudentRequest;
 import com.student.management.dtos.CreateStudentResponse;
 import java.util.List;
@@ -12,7 +13,7 @@ public interface StudentService {
     String deleteStudent(Long id);
     String enrollStudentInCourse(Long studentId, Long courseId);
     String unenrollStudentFromCourse(Long studentId, Long courseId);
-
+    List<CreateCourseResponse> getStudentCourses(Long studentId);
 }
 
 //return type    method name    parameters

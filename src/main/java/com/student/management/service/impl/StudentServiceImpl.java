@@ -1,5 +1,6 @@
 package com.student.management.service.impl;
 
+import com.student.management.dtos.CreateCourseResponse;
 import com.student.management.dtos.CreateStudentRequest;
 import com.student.management.dtos.CreateStudentResponse;
 import com.student.management.model.Course;
@@ -161,5 +162,22 @@ public class StudentServiceImpl implements StudentService {
         return "Student unenrolled successfully!";
     }
 
+    @Override
+    public List<CreateCourseResponse> getStudentCourses(Long studentId) {
+        Student student = studentRepository.findById(studentId).orElseThrow(()-> new IllegalArgumentException("Student not found!"));
+        List<Course> courses = student.getCourses();
+        List<CreateCourseResponse> responses = new ArrayList<>();
+           for (Course course : courses) {
+               CreateCourseResponse createCourseResponse = new CreateCourseResponse(
+                       course.getId(),
+                       course.getTitle(),
+                       course.getCourseCode(),
+                       course.getCreditUnits(),
+                       course.getDescription()
+               );
+               responses.add(createCourseResponse);
+           }
+        return (responses);
+    }
 
 }
