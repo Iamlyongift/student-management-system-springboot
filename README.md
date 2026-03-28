@@ -19,14 +19,22 @@ A RESTful API for managing students built with Spring Boot.
 - Update student
 - Delete student
 
+## Live API
+https://melodious-simplicity-production-8c31.up.railway.app
+
 ## API Endpoints
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST   | /api/v1/students | Create student |
-| GET    | /api/v1/students | Get all students |
-| GET    | /api/v1/students/{id} | Get student by ID |
-| PUT    | /api/v1/students/{id} | Update student |
-| DELETE | /api/v1/students/{id} | Delete student |
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| POST | /api/auth/register | Register | Public |
+| POST | /api/auth/login | Login | Public |
+| GET | /api/v1/students | Get all students | Protected |
+| POST | /api/v1/students | Create student | Protected |
+| GET | /api/v1/students/{id} | Get student | Protected |
+| PUT | /api/v1/students/{id} | Update student | Protected |
+| DELETE | /api/v1/students/{id} | Delete student | Protected |
+| GET | /api/courses | Get all courses | Protected |
+| POST | /api/courses | Create course | Protected |
+| POST | /api/v1/students/{id}/enroll/{courseId} | Enroll | Protected |
 
 ## How To Run
 1. Clone the repo
